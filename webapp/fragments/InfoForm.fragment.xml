@@ -1,0 +1,15 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns="sap.m">
+    <f:SimpleForm >
+        <f:content>
+            <Label text="Carrier ID"></Label>
+            <!-- <Text text="{CARRID}" ></Text> -->
+            <Input value="{CARRID}" editable="false"></Input>
+            <Label text="Carrier Name"></Label>
+            <Input value="{CARRNAME}" editable="{viewState>/edit}"></Input>
+            <Label text="Currency"></Label>
+            <Input value="{CURRCODE}" editable="{viewState>/edit}"></Input>
+            <Label text="URL"></Label>
+            <Input value="{URL}" editable="{viewState>/edit}"></Input>
+        </f:content>
+    </f:SimpleForm>
+</core:FragmentDefinition>

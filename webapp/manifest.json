@@ -1,0 +1,142 @@
+{
+  "_version": "1.48.0",
+  "sap.app": {
+    "id": "mic.pur.fioriapp01",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.14.4",
+      "toolsId": "46f1639d-2a3f-4e0d-bb83-5b6569ad569d"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/sap/opu/odata/sap/ZFLIGHT_ODATA_SRV/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.108.48",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.suite.ui.generic.template": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.ui.table": {},
+        "sap.ushell": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "mic.pur.fioriapp01.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {}
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "mic.pur.fioriapp01.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "clearControlAggregation": false
+      },
+      "routes": [
+        {
+          "name": "home",
+          "pattern": "",
+          "target": [
+            "MasterTarget","EmptyTarget"
+          ]
+        },{
+          "name": "detailRoute",
+          "pattern": "detail/{carrId}",
+          "target":["MasterTarget","DetailTarget"]
+        }
+      ],
+      "targets": {
+        "MasterTarget": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "View1",
+          "viewName": "View1",
+          "controlAggregation": "masterPages"
+        },
+        "EmptyTarget": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Empty",
+          "viewName": "Empty",
+          "controlAggregation": "detailPages"
+        },
+        "DetailTarget": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Detail",
+          "viewName": "Detail",
+          "controlAggregation": "detailPages"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "mic.pur.fioriapp01.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "App"
+    }
+  }
+}

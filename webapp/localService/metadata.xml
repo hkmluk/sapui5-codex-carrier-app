@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZFLIGHT_ODATA_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="Scarr" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="CARRID"/>
+                </Key>
+                <Property Name="CARRID" Type="Edm.String" Nullable="false" sap:unicode="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CARRNAME" Type="Edm.String" Nullable="false" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CURRCODE" Type="Edm.String" Nullable="false" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="URL" Type="Edm.String" Nullable="false" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="toSpfli" Relationship="ZFLIGHT_ODATA_SRV.Assoc_Scarr_Spfli" FromRole="FromRole_Assoc_Scarr_Spfli" ToRole="ToRole_Assoc_Scarr_Spfli"/>
+            </EntityType>
+            <EntityType Name="FlightSchedule" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="CARRID"/>
+                    <PropertyRef Name="CONNID"/>
+                </Key>
+                <Property Name="CARRID" Type="Edm.String" Nullable="false" sap:unicode="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CONNID" Type="Edm.String" Nullable="false" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="COUNTRYFR" Type="Edm.String" Nullable="false" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CITYFROM" Type="Edm.String" Nullable="false" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AIRPFROM" Type="Edm.String" Nullable="false" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="COUNTRYTO" Type="Edm.String" Nullable="false" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CITYTO" Type="Edm.String" Nullable="false" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AIRPTO" Type="Edm.String" Nullable="false" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FLTIME" Type="Edm.String" Nullable="false" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DEPTIME" Type="Edm.String" Nullable="false" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ARRTIME" Type="Edm.String" Nullable="false" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="CarrierLogo" m:HasStream="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="CARRID"/>
+                </Key>
+                <Property Name="CARRID" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FILENAME" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FILETYPE" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="Assoc_Scarr_Spfli" sap:content-version="1">
+                <End Type="ZFLIGHT_ODATA_SRV.Scarr" Multiplicity="1" Role="FromRole_Assoc_Scarr_Spfli"/>
+                <End Type="ZFLIGHT_ODATA_SRV.FlightSchedule" Multiplicity="*" Role="ToRole_Assoc_Scarr_Spfli"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_Assoc_Scarr_Spfli">
+                        <PropertyRef Name="CARRID"/>
+                    </Principal>
+                    <Dependent Role="ToRole_Assoc_Scarr_Spfli">
+                        <PropertyRef Name="CARRID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZFLIGHT_ODATA_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ScarrSet" EntityType="ZFLIGHT_ODATA_SRV.Scarr" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="FlightScheduleSet" EntityType="ZFLIGHT_ODATA_SRV.FlightSchedule" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="CarrierLogoSet" EntityType="ZFLIGHT_ODATA_SRV.CarrierLogo" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <AssociationSet Name="Assoc_Scarr_SpfliSet" Association="ZFLIGHT_ODATA_SRV.Assoc_Scarr_Spfli" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ScarrSet" Role="FromRole_Assoc_Scarr_Spfli"/>
+                    <End EntitySet="FlightScheduleSet" Role="ToRole_Assoc_Scarr_Spfli"/>
+                </AssociationSet>
+                <FunctionImport Name="GetLongestFlight" ReturnType="ZFLIGHT_ODATA_SRV.FlightSchedule" EntitySet="FlightScheduleSet" m:HttpMethod="GET">
+                    <Parameter Name="CARRID" Type="Edm.String" Mode="In"/>
+                </FunctionImport>
+            </EntityContainer>
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <atom:link rel="self" href="http://s4dev.st.com:8021/sap/opu/odata/sap/ZFLIGHT_ODATA_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://s4dev.st.com:8021/sap/opu/odata/sap/ZFLIGHT_ODATA_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

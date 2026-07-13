@@ -1,0 +1,24 @@
+<mvc:View controllerName="mic.pur.fioriapp01.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>titleView1}">
+        <content>
+            <!-- <Button text="Go to Next" press="onGoTo"></Button> -->
+            <SearchField id="idSearch" placeholder="Enter search criteria" search="onSearch"></SearchField>
+            <List id="idList" headerText="My Simple List" items="{path:'/ScarrSet',
+                                                                  sorter:{ path:'CARRID',  descending: false } }" selectionChange="onItemPress" 
+            mode="SingleSelectMaster" growing="true" growingThreshold="5">
+                <items>
+                    <!-- <StandardListItem title="Item 1"></StandardListItem>
+                    <StandardListItem title="Item 2"></StandardListItem> -->
+                    <ObjectListItem title="{CARRID}" number="{CARRNAME}"  type="Inactive" >
+                        
+                        <ObjectAttribute text="Color: {color}" /> 
+                        <ObjectAttribute text="Calories: {calories}" />
+                    </ObjectListItem>
+
+                </items>
+            </List>
+        </content>
+    </Page>
+</mvc:View>
