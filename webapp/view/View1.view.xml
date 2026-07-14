@@ -5,7 +5,7 @@
         <content>
             <!-- <Button text="Go to Next" press="onGoTo"></Button> -->
             <SearchField id="idSearch" placeholder="Enter search criteria" search="onSearch"></SearchField>
-            <List id="idList" headerText="My Simple List" items="{path:'/ScarrSet',
+            <List id="idList" headerText="Airlines" items="{path:'/ScarrSet',
                                                                   sorter:{ path:'CARRID',  descending: false } }" selectionChange="onItemPress" 
             mode="SingleSelectMaster" growing="true" growingThreshold="5">
                 <items>
