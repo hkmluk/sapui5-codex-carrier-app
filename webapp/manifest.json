@@ -17,7 +17,7 @@
     },
     "dataSources": {
       "mainService": {
-        "uri": "/sap/opu/odata/sap/ZFLIGHT_ODATA_SRV/",
+        "uri": "/sap/opu/odata/sap/ZFLIGHT_ODATA_SRV_SRV/",
         "type": "OData",
         "settings": {
           "annotations": [],

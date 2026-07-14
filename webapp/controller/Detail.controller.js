@@ -22,9 +22,13 @@ function (Controller,Filter,FilterOperator,MessageToast,MessageBox,JSONModel) {
 
             var sPath = "/" + carrId ;
 
-            this.getView().bindElement(sPath,{
-                expand: 'toSpfli'
-            });
+            // this.getView().bindElement(sPath,{
+            //     expand: 'toSpfli'
+            // });
+
+                this.getView().bindElement(sPath,{
+
+             });
 
             this.getView().getModel("viewState").setProperty("/edit", false);
         },
